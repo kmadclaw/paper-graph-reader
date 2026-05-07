@@ -1,0 +1,44 @@
+{
+  "papers": [
+    {
+      "id": "2604.26615",
+      "slug": "2604.26615",
+      "kind": "arXiv",
+      "title": "TDD Governance for Multi-Agent Code Generation via Prompt Engineering",
+      "authors": "Tarlan Hasanli, Shahbaz Siddeeq, Bishwash Khanal, Pyry Kotilainen, Tommi Mikkonen, Pekka Abrahamsson",
+      "published": "2026-04-29",
+      "category": "cs.SE",
+      "abstract": "Large language models (LLMs) accelerate software development but often exhibit instability, non-determinism, and weak adherence to development discipline in unconstrained workflows. While test-driven development (TDD) provides a structured Red-Green-Refactor process, existing LLM-based approaches typically use tests as auxiliary inputs rather than enforceable process constraints. We present an AI-native TDD framework that operationalizes classical TDD principles as structured prompt-level and workflow-level governance mechanisms. Extracted principles are formalized in a machine-readable manifesto and distributed across planning, generation, repair, and validation stages within a layered architecture that separates model proposal from deterministic engine authority. The system enforces phase ordering, bounded repair loops, validation gates, and atomic mutation control to improve stability and reproducibility. We describe architecture and discuss encoding software engineering discipline directly into prompt orchestration, which we think offers a promising direction for reliable LLM-assisted development.",
+      "assets": {
+        "pdf": "/papers/2604.26615/paper.pdf",
+        "text": "/papers/2604.26615/paper_text.md",
+        "report": "/papers/2604.26615/graphify-out/GRAPH_REPORT.md",
+        "graphJson": "/papers/2604.26615/graphify-out/graph.json",
+        "graphHtml": "/papers/2604.26615/graphify-out/graph.html",
+        "treeHtml": "/papers/2604.26615/graphify-out/GRAPH_TREE.html",
+        "wikiIndex": "/papers/2604.26615/graphify-out/wiki/index.md",
+        "canvas": "/papers/2604.26615/graphify-out/graph.canvas",
+        "cypher": "/papers/2604.26615/graphify-out/graph.cypher",
+        "graphml": "/papers/2604.26615/graphify-out/graph.graphml"
+      },
+      "stats": {
+        "nodes": 35,
+        "edges": 71,
+        "pages": 5
+      },
+      "communities": [
+        "Paper Thesis & Claims",
+        "TDD Principles Manifesto",
+        "Governance Architecture",
+        "Agent Workflow & Repair Control",
+        "Related Work Context"
+      ],
+      "featuredQuestions": [
+        "How does TDD become enforceable governance?",
+        "What path connects LLM instability to bounded repair?",
+        "Which agent roles participate in the governed workflow?",
+        "What are the limitations of the framework?"
+      ]
+    }
+  ]
+}

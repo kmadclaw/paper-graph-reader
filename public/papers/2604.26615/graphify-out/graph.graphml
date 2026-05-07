@@ -1,0 +1,757 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d9" for="edge" attr.name="_tgt" attr.type="string" />
+  <key id="d8" for="edge" attr.name="_src" attr.type="string" />
+  <key id="d7" for="edge" attr.name="source_file" attr.type="string" />
+  <key id="d6" for="edge" attr.name="confidence" attr.type="string" />
+  <key id="d5" for="edge" attr.name="relation" attr.type="string" />
+  <key id="d4" for="node" attr.name="community" attr.type="long" />
+  <key id="d3" for="node" attr.name="description" attr.type="string" />
+  <key id="d2" for="node" attr.name="source_file" attr.type="string" />
+  <key id="d1" for="node" attr.name="file_type" attr.type="string" />
+  <key id="d0" for="node" attr.name="label" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="paper">
+      <data key="d0">TDD Governance for Multi-Agent Code Generation via Prompt Engineering</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">EASE 2026 arXiv paper proposing AI-native TDD governance for multi-agent code generation.</data>
+      <data key="d4">0</data>
+    </node>
+    <node id="problem">
+      <data key="d0">Problem: unconstrained LLM coding is unstable</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">LLMs show non-determinism, hallucinations, reproducibility gaps, and weak process discipline.</data>
+      <data key="d4">0</data>
+    </node>
+    <node id="gap">
+      <data key="d0">Gap: tests are auxiliary, not enforceable constraints</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Existing LLM approaches use tests as prompts/evaluation but do not enforce full TDD discipline.</data>
+      <data key="d4">0</data>
+    </node>
+    <node id="contribution">
+      <data key="d0">Contribution: AI-native TDD framework</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Turns classical TDD principles into prompt-level and workflow-level governance mechanisms.</data>
+      <data key="d4">0</data>
+    </node>
+    <node id="tdd">
+      <data key="d0">Classical TDD</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Red-Green-Refactor micro-cycle where tests specify behavior before implementation.</data>
+      <data key="d4">1</data>
+    </node>
+    <node id="red_green_refactor">
+      <data key="d0">Red-Green-Refactor phase ordering</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">A disciplined cycle: failing test first, minimal code to pass, then behavior-preserving refactor.</data>
+      <data key="d4">1</data>
+    </node>
+    <node id="principle_categories">
+      <data key="d0">TDD principle categories</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Order, granularity, feedback quality, and design hygiene.</data>
+      <data key="d4">1</data>
+    </node>
+    <node id="order_constraints">
+      <data key="d0">Order constraints</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Test-first and Red→Green→Refactor sequencing.</data>
+      <data key="d4">1</data>
+    </node>
+    <node id="granularity_constraints">
+      <data key="d0">Granularity constraints</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Minimal failing test, minimal passing code, one failing test at a time.</data>
+      <data key="d4">1</data>
+    </node>
+    <node id="feedback_quality">
+      <data key="d0">Feedback-quality constraints</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">FAST, independent, repeatable, self-validating, timely tests with meaningful assertions.</data>
+      <data key="d4">1</data>
+    </node>
+    <node id="design_hygiene">
+      <data key="d0">Design hygiene constraints</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Remove duplication and refactor continuously while green.</data>
+      <data key="d4">1</data>
+    </node>
+    <node id="manifesto">
+      <data key="d0">Machine-readable TDD manifesto</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">JSON-style structured governance object with principle id, title, intent, AI-native interpretation, constraints, and anti-patterns.</data>
+      <data key="d4">1</data>
+    </node>
+    <node id="architecture">
+      <data key="d0">Governance-centric layered architecture</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Separates non-authoritative LLM proposal generation from authoritative engine-controlled mutation.</data>
+      <data key="d4">2</data>
+    </node>
+    <node id="proposal_layer">
+      <data key="d0">LLM proposal layer</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Planner, test, code, repair, and review agents propose structured outputs but cannot mutate workspace directly.</data>
+      <data key="d4">2</data>
+    </node>
+    <node id="engine_governance">
+      <data key="d0">Authoritative engine governance</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Engine owns validation, phase transitions, test runs, atomic apply, rollback, and state mutation.</data>
+      <data key="d4">2</data>
+    </node>
+    <node id="planner">
+      <data key="d0">Planner prompt/agent</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Decomposes requirements into ordered steps with expected test outcomes.</data>
+      <data key="d4">3</data>
+    </node>
+    <node id="test_generation">
+      <data key="d0">Test generation prompt/agent</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">RED-phase prompt restricted to tests with meaningful assertions aligned to the spec.</data>
+      <data key="d4">3</data>
+    </node>
+    <node id="implementation">
+      <data key="d0">Implementation prompt/agent</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">GREEN-phase prompt restricted to minimal code changes needed to satisfy failing tests.</data>
+      <data key="d4">3</data>
+    </node>
+    <node id="failure_repair">
+      <data key="d0">Failure repair prompt/agent</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Uses structured failure context for minimal localized corrections.</data>
+      <data key="d4">3</data>
+    </node>
+    <node id="review">
+      <data key="d0">Review prompt/agent</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Quality gate preventing over-specification, invented requirements, and phase pollution.</data>
+      <data key="d4">3</data>
+    </node>
+    <node id="validation_gates">
+      <data key="d0">Validation gates</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Schema/content checks, policy enforcement, phase consistency checks, and optional approval.</data>
+      <data key="d4">2</data>
+    </node>
+    <node id="phase_gating">
+      <data key="d0">Phase gating</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Code generation is not allowed until a failing test state exists; refactor is only allowed while green.</data>
+      <data key="d4">2</data>
+    </node>
+    <node id="bounded_repair">
+      <data key="d0">Bounded repair loops</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">At most N=3 repair attempts, with early termination for repeated failure signature, no effective change, or semantically equivalent proposals.</data>
+      <data key="d4">3</data>
+    </node>
+    <node id="failure_signature">
+      <data key="d0">Failure signature S</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Exception type, failing tests, normalized message; used to detect repeated failures.</data>
+      <data key="d4">3</data>
+    </node>
+    <node id="deterministic_tests">
+      <data key="d0">Deterministic test run</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Engine executes tests as an authoritative verifier after approved proposals.</data>
+      <data key="d4">2</data>
+    </node>
+    <node id="atomic_mutation">
+      <data key="d0">Atomic apply / rollback</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">All file mutations are performed atomically by the engine after validation; rollback protects refactoring.</data>
+      <data key="d4">2</data>
+    </node>
+    <node id="runtime_enforcement">
+      <data key="d0">Runtime enforcement mechanisms</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Planner-ordered FAIL gating, scope restrictions, no-op/unrelated-change rejection, post-apply tests, rollback.</data>
+      <data key="d4">2</data>
+    </node>
+    <node id="prompt_distribution">
+      <data key="d0">Prompt distribution across roles</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Governance invariants are distributed across system, planner, test generation, implementation, failure repair, and review prompts.</data>
+      <data key="d4">3</data>
+    </node>
+    <node id="benefit">
+      <data key="d0">Benefits claimed</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Reduced uncontrolled iteration, improved stability/reproducibility, less speculative code expansion, auditable AI-assisted development.</data>
+      <data key="d4">0</data>
+    </node>
+    <node id="limitations">
+      <data key="d0">Limitations</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Prompt-level enforcement only partial; empirical validation preliminary; cross-model/repository-scale evaluation needed; strict governance may limit exploration.</data>
+      <data key="d4">0</data>
+    </node>
+    <node id="future_work">
+      <data key="d0">Future work</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Repository-scale industrial settings, CI/CD integration, configurable governance levels, regulated-domain auditability.</data>
+      <data key="d4">0</data>
+    </node>
+    <node id="related_tdflow">
+      <data key="d0">TDFlow</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Related agentic TDD workflow; this paper emphasizes governed execution under non-determinism.</data>
+      <data key="d4">4</data>
+    </node>
+    <node id="related_ticoder">
+      <data key="d0">TiCoder</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Related interactive TDD-style test refinement and code generation.</data>
+      <data key="d4">4</data>
+    </node>
+    <node id="related_llm4tdd">
+      <data key="d0">LLM4TDD best practices</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Related practical guidance for TDD-style LLM use.</data>
+      <data key="d4">4</data>
+    </node>
+    <node id="related_self_refine">
+      <data key="d0">Self-Refine / structured CoT prompting</data>
+      <data key="d1">paper</data>
+      <data key="d2">paper_text.md</data>
+      <data key="d3">Related prompt engineering loops that improve code generation quality but do not enforce full process discipline.</data>
+      <data key="d4">4</data>
+    </node>
+    <edge source="paper" target="problem">
+      <data key="d5">motivated_by</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">paper</data>
+      <data key="d9">problem</data>
+    </edge>
+    <edge source="paper" target="gap">
+      <data key="d5">addresses</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">paper</data>
+      <data key="d9">gap</data>
+    </edge>
+    <edge source="paper" target="contribution">
+      <data key="d5">proposes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">paper</data>
+      <data key="d9">contribution</data>
+    </edge>
+    <edge source="problem" target="benefit">
+      <data key="d5">mitigates</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">benefit</data>
+      <data key="d9">problem</data>
+    </edge>
+    <edge source="problem" target="bounded_repair">
+      <data key="d5">requires_governance</data>
+      <data key="d6">INFERRED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">problem</data>
+      <data key="d9">bounded_repair</data>
+    </edge>
+    <edge source="problem" target="engine_governance">
+      <data key="d5">requires_authority</data>
+      <data key="d6">INFERRED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">problem</data>
+      <data key="d9">engine_governance</data>
+    </edge>
+    <edge source="gap" target="related_tdflow">
+      <data key="d5">contrasted_with</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">related_tdflow</data>
+      <data key="d9">gap</data>
+    </edge>
+    <edge source="gap" target="related_ticoder">
+      <data key="d5">contrasted_with</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">related_ticoder</data>
+      <data key="d9">gap</data>
+    </edge>
+    <edge source="gap" target="related_llm4tdd">
+      <data key="d5">contrasted_with</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">related_llm4tdd</data>
+      <data key="d9">gap</data>
+    </edge>
+    <edge source="gap" target="related_self_refine">
+      <data key="d5">contrasted_with</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">related_self_refine</data>
+      <data key="d9">gap</data>
+    </edge>
+    <edge source="contribution" target="tdd">
+      <data key="d5">operationalizes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">contribution</data>
+      <data key="d9">tdd</data>
+    </edge>
+    <edge source="contribution" target="manifesto">
+      <data key="d5">uses</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">contribution</data>
+      <data key="d9">manifesto</data>
+    </edge>
+    <edge source="contribution" target="architecture">
+      <data key="d5">implemented_as</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">contribution</data>
+      <data key="d9">architecture</data>
+    </edge>
+    <edge source="contribution" target="benefit">
+      <data key="d5">claims</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">contribution</data>
+      <data key="d9">benefit</data>
+    </edge>
+    <edge source="contribution" target="limitations">
+      <data key="d5">qualifies</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">limitations</data>
+      <data key="d9">contribution</data>
+    </edge>
+    <edge source="contribution" target="related_tdflow">
+      <data key="d5">informs</data>
+      <data key="d6">INFERRED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">related_tdflow</data>
+      <data key="d9">contribution</data>
+    </edge>
+    <edge source="tdd" target="red_green_refactor">
+      <data key="d5">contains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">tdd</data>
+      <data key="d9">red_green_refactor</data>
+    </edge>
+    <edge source="tdd" target="principle_categories">
+      <data key="d5">abstracted_into</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">tdd</data>
+      <data key="d9">principle_categories</data>
+    </edge>
+    <edge source="red_green_refactor" target="order_constraints">
+      <data key="d5">enforces</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">order_constraints</data>
+      <data key="d9">red_green_refactor</data>
+    </edge>
+    <edge source="red_green_refactor" target="phase_gating">
+      <data key="d5">implements</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">phase_gating</data>
+      <data key="d9">red_green_refactor</data>
+    </edge>
+    <edge source="principle_categories" target="order_constraints">
+      <data key="d5">includes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">principle_categories</data>
+      <data key="d9">order_constraints</data>
+    </edge>
+    <edge source="principle_categories" target="granularity_constraints">
+      <data key="d5">includes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">principle_categories</data>
+      <data key="d9">granularity_constraints</data>
+    </edge>
+    <edge source="principle_categories" target="feedback_quality">
+      <data key="d5">includes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">principle_categories</data>
+      <data key="d9">feedback_quality</data>
+    </edge>
+    <edge source="principle_categories" target="design_hygiene">
+      <data key="d5">includes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">principle_categories</data>
+      <data key="d9">design_hygiene</data>
+    </edge>
+    <edge source="order_constraints" target="manifesto">
+      <data key="d5">encodes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">manifesto</data>
+      <data key="d9">order_constraints</data>
+    </edge>
+    <edge source="granularity_constraints" target="implementation">
+      <data key="d5">must_be_minimal</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">implementation</data>
+      <data key="d9">granularity_constraints</data>
+    </edge>
+    <edge source="granularity_constraints" target="manifesto">
+      <data key="d5">encodes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">manifesto</data>
+      <data key="d9">granularity_constraints</data>
+    </edge>
+    <edge source="feedback_quality" target="deterministic_tests">
+      <data key="d5">requires</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">feedback_quality</data>
+      <data key="d9">deterministic_tests</data>
+    </edge>
+    <edge source="feedback_quality" target="manifesto">
+      <data key="d5">encodes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">manifesto</data>
+      <data key="d9">feedback_quality</data>
+    </edge>
+    <edge source="design_hygiene" target="atomic_mutation">
+      <data key="d5">protected_by</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">design_hygiene</data>
+      <data key="d9">atomic_mutation</data>
+    </edge>
+    <edge source="design_hygiene" target="manifesto">
+      <data key="d5">encodes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">manifesto</data>
+      <data key="d9">design_hygiene</data>
+    </edge>
+    <edge source="manifesto" target="prompt_distribution">
+      <data key="d5">informs</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">manifesto</data>
+      <data key="d9">prompt_distribution</data>
+    </edge>
+    <edge source="manifesto" target="runtime_enforcement">
+      <data key="d5">maps_to</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">manifesto</data>
+      <data key="d9">runtime_enforcement</data>
+    </edge>
+    <edge source="architecture" target="proposal_layer">
+      <data key="d5">separates</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">architecture</data>
+      <data key="d9">proposal_layer</data>
+    </edge>
+    <edge source="architecture" target="engine_governance">
+      <data key="d5">separates</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">architecture</data>
+      <data key="d9">engine_governance</data>
+    </edge>
+    <edge source="proposal_layer" target="engine_governance">
+      <data key="d5">submits_to</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">proposal_layer</data>
+      <data key="d9">engine_governance</data>
+    </edge>
+    <edge source="proposal_layer" target="planner">
+      <data key="d5">contains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">proposal_layer</data>
+      <data key="d9">planner</data>
+    </edge>
+    <edge source="proposal_layer" target="test_generation">
+      <data key="d5">contains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">proposal_layer</data>
+      <data key="d9">test_generation</data>
+    </edge>
+    <edge source="proposal_layer" target="implementation">
+      <data key="d5">contains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">proposal_layer</data>
+      <data key="d9">implementation</data>
+    </edge>
+    <edge source="proposal_layer" target="failure_repair">
+      <data key="d5">contains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">proposal_layer</data>
+      <data key="d9">failure_repair</data>
+    </edge>
+    <edge source="proposal_layer" target="review">
+      <data key="d5">contains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">proposal_layer</data>
+      <data key="d9">review</data>
+    </edge>
+    <edge source="engine_governance" target="validation_gates">
+      <data key="d5">performs</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">engine_governance</data>
+      <data key="d9">validation_gates</data>
+    </edge>
+    <edge source="engine_governance" target="phase_gating">
+      <data key="d5">performs</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">engine_governance</data>
+      <data key="d9">phase_gating</data>
+    </edge>
+    <edge source="engine_governance" target="deterministic_tests">
+      <data key="d5">executes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">engine_governance</data>
+      <data key="d9">deterministic_tests</data>
+    </edge>
+    <edge source="engine_governance" target="atomic_mutation">
+      <data key="d5">owns</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">engine_governance</data>
+      <data key="d9">atomic_mutation</data>
+    </edge>
+    <edge source="engine_governance" target="bounded_repair">
+      <data key="d5">controls</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">engine_governance</data>
+      <data key="d9">bounded_repair</data>
+    </edge>
+    <edge source="planner" target="phase_gating">
+      <data key="d5">establishes_order</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">planner</data>
+      <data key="d9">phase_gating</data>
+    </edge>
+    <edge source="planner" target="test_generation">
+      <data key="d5">routes_to_red</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">planner</data>
+      <data key="d9">test_generation</data>
+    </edge>
+    <edge source="planner" target="prompt_distribution">
+      <data key="d5">constrains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">prompt_distribution</data>
+      <data key="d9">planner</data>
+    </edge>
+    <edge source="test_generation" target="deterministic_tests">
+      <data key="d5">expects_initial_fail</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">test_generation</data>
+      <data key="d9">deterministic_tests</data>
+    </edge>
+    <edge source="test_generation" target="phase_gating">
+      <data key="d5">precedes_code</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">test_generation</data>
+      <data key="d9">phase_gating</data>
+    </edge>
+    <edge source="test_generation" target="prompt_distribution">
+      <data key="d5">constrains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">prompt_distribution</data>
+      <data key="d9">test_generation</data>
+    </edge>
+    <edge source="test_generation" target="related_ticoder">
+      <data key="d5">informs</data>
+      <data key="d6">INFERRED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">related_ticoder</data>
+      <data key="d9">test_generation</data>
+    </edge>
+    <edge source="implementation" target="deterministic_tests">
+      <data key="d5">validated_by</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">implementation</data>
+      <data key="d9">deterministic_tests</data>
+    </edge>
+    <edge source="implementation" target="prompt_distribution">
+      <data key="d5">constrains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">prompt_distribution</data>
+      <data key="d9">implementation</data>
+    </edge>
+    <edge source="failure_repair" target="bounded_repair">
+      <data key="d5">governed_by</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">failure_repair</data>
+      <data key="d9">bounded_repair</data>
+    </edge>
+    <edge source="failure_repair" target="prompt_distribution">
+      <data key="d5">constrains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">prompt_distribution</data>
+      <data key="d9">failure_repair</data>
+    </edge>
+    <edge source="failure_repair" target="related_self_refine">
+      <data key="d5">informs</data>
+      <data key="d6">INFERRED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">related_self_refine</data>
+      <data key="d9">failure_repair</data>
+    </edge>
+    <edge source="review" target="validation_gates">
+      <data key="d5">acts_as</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">review</data>
+      <data key="d9">validation_gates</data>
+    </edge>
+    <edge source="review" target="prompt_distribution">
+      <data key="d5">constrains</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">prompt_distribution</data>
+      <data key="d9">review</data>
+    </edge>
+    <edge source="validation_gates" target="atomic_mutation">
+      <data key="d5">precedes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">validation_gates</data>
+      <data key="d9">atomic_mutation</data>
+    </edge>
+    <edge source="validation_gates" target="runtime_enforcement">
+      <data key="d5">includes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">runtime_enforcement</data>
+      <data key="d9">validation_gates</data>
+    </edge>
+    <edge source="phase_gating" target="runtime_enforcement">
+      <data key="d5">includes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">runtime_enforcement</data>
+      <data key="d9">phase_gating</data>
+    </edge>
+    <edge source="bounded_repair" target="failure_signature">
+      <data key="d5">uses</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">bounded_repair</data>
+      <data key="d9">failure_signature</data>
+    </edge>
+    <edge source="bounded_repair" target="deterministic_tests">
+      <data key="d5">retries_until_pass_or_cap</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">bounded_repair</data>
+      <data key="d9">deterministic_tests</data>
+    </edge>
+    <edge source="bounded_repair" target="runtime_enforcement">
+      <data key="d5">includes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">runtime_enforcement</data>
+      <data key="d9">bounded_repair</data>
+    </edge>
+    <edge source="deterministic_tests" target="atomic_mutation">
+      <data key="d5">followed_by</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">atomic_mutation</data>
+      <data key="d9">deterministic_tests</data>
+    </edge>
+    <edge source="atomic_mutation" target="runtime_enforcement">
+      <data key="d5">includes</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">runtime_enforcement</data>
+      <data key="d9">atomic_mutation</data>
+    </edge>
+    <edge source="runtime_enforcement" target="prompt_distribution">
+      <data key="d5">complemented_by</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">prompt_distribution</data>
+      <data key="d9">runtime_enforcement</data>
+    </edge>
+    <edge source="prompt_distribution" target="related_llm4tdd">
+      <data key="d5">informs</data>
+      <data key="d6">INFERRED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">related_llm4tdd</data>
+      <data key="d9">prompt_distribution</data>
+    </edge>
+    <edge source="limitations" target="future_work">
+      <data key="d5">responds_to</data>
+      <data key="d6">EXTRACTED</data>
+      <data key="d7">paper_text.md</data>
+      <data key="d8">future_work</data>
+      <data key="d9">limitations</data>
+    </edge>
+  </graph>
+</graphml>

@@ -1,0 +1,797 @@
+{
+  "nodes": [
+    {
+      "id": "g0",
+      "type": "group",
+      "label": "Paper Thesis & Claims",
+      "x": 0,
+      "y": 0,
+      "width": 660,
+      "height": 420,
+      "color": "1"
+    },
+    {
+      "id": "n_benefit",
+      "type": "file",
+      "file": "Benefits claimed.md",
+      "x": 20,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_contribution",
+      "type": "file",
+      "file": "Contribution AI-native TDD framework.md",
+      "x": 220,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_future_work",
+      "type": "file",
+      "file": "Future work.md",
+      "x": 420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_gap",
+      "type": "file",
+      "file": "Gap tests are auxiliary, not enforceable constraints.md",
+      "x": 20,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_limitations",
+      "type": "file",
+      "file": "Limitations.md",
+      "x": 220,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_problem",
+      "type": "file",
+      "file": "Problem unconstrained LLM coding is unstable.md",
+      "x": 420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_paper",
+      "type": "file",
+      "file": "TDD Governance for Multi-Agent Code Generation via Prompt Engineering.md",
+      "x": 20,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g1",
+      "type": "group",
+      "label": "TDD Principles Manifesto",
+      "x": 740,
+      "y": 0,
+      "width": 660,
+      "height": 420,
+      "color": "2"
+    },
+    {
+      "id": "n_tdd",
+      "type": "file",
+      "file": "Classical TDD.md",
+      "x": 760,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_design_hygiene",
+      "type": "file",
+      "file": "Design hygiene constraints.md",
+      "x": 960,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_feedback_quality",
+      "type": "file",
+      "file": "Feedback-quality constraints.md",
+      "x": 1160,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_granularity_constraints",
+      "type": "file",
+      "file": "Granularity constraints.md",
+      "x": 760,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_manifesto",
+      "type": "file",
+      "file": "Machine-readable TDD manifesto.md",
+      "x": 960,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_order_constraints",
+      "type": "file",
+      "file": "Order constraints.md",
+      "x": 1160,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_red_green_refactor",
+      "type": "file",
+      "file": "Red-Green-Refactor phase ordering.md",
+      "x": 760,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_principle_categories",
+      "type": "file",
+      "file": "TDD principle categories.md",
+      "x": 960,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g2",
+      "type": "group",
+      "label": "Governance Architecture",
+      "x": 1480,
+      "y": 0,
+      "width": 660,
+      "height": 420,
+      "color": "3"
+    },
+    {
+      "id": "n_atomic_mutation",
+      "type": "file",
+      "file": "Atomic apply  rollback.md",
+      "x": 1500,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_engine_governance",
+      "type": "file",
+      "file": "Authoritative engine governance.md",
+      "x": 1700,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_deterministic_tests",
+      "type": "file",
+      "file": "Deterministic test run.md",
+      "x": 1900,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_architecture",
+      "type": "file",
+      "file": "Governance-centric layered architecture.md",
+      "x": 1500,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_proposal_layer",
+      "type": "file",
+      "file": "LLM proposal layer.md",
+      "x": 1700,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_phase_gating",
+      "type": "file",
+      "file": "Phase gating.md",
+      "x": 1900,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_runtime_enforcement",
+      "type": "file",
+      "file": "Runtime enforcement mechanisms.md",
+      "x": 1500,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_validation_gates",
+      "type": "file",
+      "file": "Validation gates.md",
+      "x": 1700,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g3",
+      "type": "group",
+      "label": "Agent Workflow & Repair Control",
+      "x": 0,
+      "y": 500,
+      "width": 660,
+      "height": 420,
+      "color": "4"
+    },
+    {
+      "id": "n_bounded_repair",
+      "type": "file",
+      "file": "Bounded repair loops.md",
+      "x": 20,
+      "y": 580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_failure_repair",
+      "type": "file",
+      "file": "Failure repair promptagent.md",
+      "x": 220,
+      "y": 580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_failure_signature",
+      "type": "file",
+      "file": "Failure signature S.md",
+      "x": 420,
+      "y": 580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_implementation",
+      "type": "file",
+      "file": "Implementation promptagent.md",
+      "x": 20,
+      "y": 660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_planner",
+      "type": "file",
+      "file": "Planner promptagent.md",
+      "x": 220,
+      "y": 660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_prompt_distribution",
+      "type": "file",
+      "file": "Prompt distribution across roles.md",
+      "x": 420,
+      "y": 660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_review",
+      "type": "file",
+      "file": "Review promptagent.md",
+      "x": 20,
+      "y": 740,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_test_generation",
+      "type": "file",
+      "file": "Test generation promptagent.md",
+      "x": 220,
+      "y": 740,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g4",
+      "type": "group",
+      "label": "Related Work Context",
+      "x": 740,
+      "y": 500,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_related_llm4tdd",
+      "type": "file",
+      "file": "LLM4TDD best practices.md",
+      "x": 760,
+      "y": 580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_related_self_refine",
+      "type": "file",
+      "file": "Self-Refine  structured CoT prompting.md",
+      "x": 960,
+      "y": 580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_related_tdflow",
+      "type": "file",
+      "file": "TDFlow.md",
+      "x": 1160,
+      "y": 580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_related_ticoder",
+      "type": "file",
+      "file": "TiCoder.md",
+      "x": 760,
+      "y": 660,
+      "width": 180,
+      "height": 60
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_paper_problem",
+      "fromNode": "n_paper",
+      "toNode": "n_problem",
+      "label": "motivated_by [EXTRACTED]"
+    },
+    {
+      "id": "e_paper_gap",
+      "fromNode": "n_paper",
+      "toNode": "n_gap",
+      "label": "addresses [EXTRACTED]"
+    },
+    {
+      "id": "e_paper_contribution",
+      "fromNode": "n_paper",
+      "toNode": "n_contribution",
+      "label": "proposes [EXTRACTED]"
+    },
+    {
+      "id": "e_problem_benefit",
+      "fromNode": "n_problem",
+      "toNode": "n_benefit",
+      "label": "mitigates [EXTRACTED]"
+    },
+    {
+      "id": "e_problem_bounded_repair",
+      "fromNode": "n_problem",
+      "toNode": "n_bounded_repair",
+      "label": "requires_governance [INFERRED]"
+    },
+    {
+      "id": "e_problem_engine_governance",
+      "fromNode": "n_problem",
+      "toNode": "n_engine_governance",
+      "label": "requires_authority [INFERRED]"
+    },
+    {
+      "id": "e_gap_related_tdflow",
+      "fromNode": "n_gap",
+      "toNode": "n_related_tdflow",
+      "label": "contrasted_with [EXTRACTED]"
+    },
+    {
+      "id": "e_gap_related_ticoder",
+      "fromNode": "n_gap",
+      "toNode": "n_related_ticoder",
+      "label": "contrasted_with [EXTRACTED]"
+    },
+    {
+      "id": "e_gap_related_llm4tdd",
+      "fromNode": "n_gap",
+      "toNode": "n_related_llm4tdd",
+      "label": "contrasted_with [EXTRACTED]"
+    },
+    {
+      "id": "e_gap_related_self_refine",
+      "fromNode": "n_gap",
+      "toNode": "n_related_self_refine",
+      "label": "contrasted_with [EXTRACTED]"
+    },
+    {
+      "id": "e_contribution_tdd",
+      "fromNode": "n_contribution",
+      "toNode": "n_tdd",
+      "label": "operationalizes [EXTRACTED]"
+    },
+    {
+      "id": "e_contribution_manifesto",
+      "fromNode": "n_contribution",
+      "toNode": "n_manifesto",
+      "label": "uses [EXTRACTED]"
+    },
+    {
+      "id": "e_contribution_architecture",
+      "fromNode": "n_contribution",
+      "toNode": "n_architecture",
+      "label": "implemented_as [EXTRACTED]"
+    },
+    {
+      "id": "e_contribution_benefit",
+      "fromNode": "n_contribution",
+      "toNode": "n_benefit",
+      "label": "claims [EXTRACTED]"
+    },
+    {
+      "id": "e_contribution_limitations",
+      "fromNode": "n_contribution",
+      "toNode": "n_limitations",
+      "label": "qualifies [EXTRACTED]"
+    },
+    {
+      "id": "e_contribution_related_tdflow",
+      "fromNode": "n_contribution",
+      "toNode": "n_related_tdflow",
+      "label": "informs [INFERRED]"
+    },
+    {
+      "id": "e_tdd_red_green_refactor",
+      "fromNode": "n_tdd",
+      "toNode": "n_red_green_refactor",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_tdd_principle_categories",
+      "fromNode": "n_tdd",
+      "toNode": "n_principle_categories",
+      "label": "abstracted_into [EXTRACTED]"
+    },
+    {
+      "id": "e_red_green_refactor_order_constraints",
+      "fromNode": "n_red_green_refactor",
+      "toNode": "n_order_constraints",
+      "label": "enforces [EXTRACTED]"
+    },
+    {
+      "id": "e_red_green_refactor_phase_gating",
+      "fromNode": "n_red_green_refactor",
+      "toNode": "n_phase_gating",
+      "label": "implements [EXTRACTED]"
+    },
+    {
+      "id": "e_principle_categories_order_constraints",
+      "fromNode": "n_principle_categories",
+      "toNode": "n_order_constraints",
+      "label": "includes [EXTRACTED]"
+    },
+    {
+      "id": "e_principle_categories_granularity_constraints",
+      "fromNode": "n_principle_categories",
+      "toNode": "n_granularity_constraints",
+      "label": "includes [EXTRACTED]"
+    },
+    {
+      "id": "e_principle_categories_feedback_quality",
+      "fromNode": "n_principle_categories",
+      "toNode": "n_feedback_quality",
+      "label": "includes [EXTRACTED]"
+    },
+    {
+      "id": "e_principle_categories_design_hygiene",
+      "fromNode": "n_principle_categories",
+      "toNode": "n_design_hygiene",
+      "label": "includes [EXTRACTED]"
+    },
+    {
+      "id": "e_order_constraints_manifesto",
+      "fromNode": "n_order_constraints",
+      "toNode": "n_manifesto",
+      "label": "encodes [EXTRACTED]"
+    },
+    {
+      "id": "e_granularity_constraints_implementation",
+      "fromNode": "n_granularity_constraints",
+      "toNode": "n_implementation",
+      "label": "must_be_minimal [EXTRACTED]"
+    },
+    {
+      "id": "e_granularity_constraints_manifesto",
+      "fromNode": "n_granularity_constraints",
+      "toNode": "n_manifesto",
+      "label": "encodes [EXTRACTED]"
+    },
+    {
+      "id": "e_feedback_quality_deterministic_tests",
+      "fromNode": "n_feedback_quality",
+      "toNode": "n_deterministic_tests",
+      "label": "requires [EXTRACTED]"
+    },
+    {
+      "id": "e_feedback_quality_manifesto",
+      "fromNode": "n_feedback_quality",
+      "toNode": "n_manifesto",
+      "label": "encodes [EXTRACTED]"
+    },
+    {
+      "id": "e_design_hygiene_atomic_mutation",
+      "fromNode": "n_design_hygiene",
+      "toNode": "n_atomic_mutation",
+      "label": "protected_by [EXTRACTED]"
+    },
+    {
+      "id": "e_design_hygiene_manifesto",
+      "fromNode": "n_design_hygiene",
+      "toNode": "n_manifesto",
+      "label": "encodes [EXTRACTED]"
+    },
+    {
+      "id": "e_manifesto_prompt_distribution",
+      "fromNode": "n_manifesto",
+      "toNode": "n_prompt_distribution",
+      "label": "informs [EXTRACTED]"
+    },
+    {
+      "id": "e_manifesto_runtime_enforcement",
+      "fromNode": "n_manifesto",
+      "toNode": "n_runtime_enforcement",
+      "label": "maps_to [EXTRACTED]"
+    },
+    {
+      "id": "e_architecture_proposal_layer",
+      "fromNode": "n_architecture",
+      "toNode": "n_proposal_layer",
+      "label": "separates [EXTRACTED]"
+    },
+    {
+      "id": "e_architecture_engine_governance",
+      "fromNode": "n_architecture",
+      "toNode": "n_engine_governance",
+      "label": "separates [EXTRACTED]"
+    },
+    {
+      "id": "e_proposal_layer_engine_governance",
+      "fromNode": "n_proposal_layer",
+      "toNode": "n_engine_governance",
+      "label": "submits_to [EXTRACTED]"
+    },
+    {
+      "id": "e_proposal_layer_planner",
+      "fromNode": "n_proposal_layer",
+      "toNode": "n_planner",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_proposal_layer_test_generation",
+      "fromNode": "n_proposal_layer",
+      "toNode": "n_test_generation",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_proposal_layer_implementation",
+      "fromNode": "n_proposal_layer",
+      "toNode": "n_implementation",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_proposal_layer_failure_repair",
+      "fromNode": "n_proposal_layer",
+      "toNode": "n_failure_repair",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_proposal_layer_review",
+      "fromNode": "n_proposal_layer",
+      "toNode": "n_review",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_engine_governance_validation_gates",
+      "fromNode": "n_engine_governance",
+      "toNode": "n_validation_gates",
+      "label": "performs [EXTRACTED]"
+    },
+    {
+      "id": "e_engine_governance_phase_gating",
+      "fromNode": "n_engine_governance",
+      "toNode": "n_phase_gating",
+      "label": "performs [EXTRACTED]"
+    },
+    {
+      "id": "e_engine_governance_deterministic_tests",
+      "fromNode": "n_engine_governance",
+      "toNode": "n_deterministic_tests",
+      "label": "executes [EXTRACTED]"
+    },
+    {
+      "id": "e_engine_governance_atomic_mutation",
+      "fromNode": "n_engine_governance",
+      "toNode": "n_atomic_mutation",
+      "label": "owns [EXTRACTED]"
+    },
+    {
+      "id": "e_engine_governance_bounded_repair",
+      "fromNode": "n_engine_governance",
+      "toNode": "n_bounded_repair",
+      "label": "controls [EXTRACTED]"
+    },
+    {
+      "id": "e_planner_phase_gating",
+      "fromNode": "n_planner",
+      "toNode": "n_phase_gating",
+      "label": "establishes_order [EXTRACTED]"
+    },
+    {
+      "id": "e_planner_test_generation",
+      "fromNode": "n_planner",
+      "toNode": "n_test_generation",
+      "label": "routes_to_red [EXTRACTED]"
+    },
+    {
+      "id": "e_planner_prompt_distribution",
+      "fromNode": "n_planner",
+      "toNode": "n_prompt_distribution",
+      "label": "constrains [EXTRACTED]"
+    },
+    {
+      "id": "e_test_generation_deterministic_tests",
+      "fromNode": "n_test_generation",
+      "toNode": "n_deterministic_tests",
+      "label": "expects_initial_fail [EXTRACTED]"
+    },
+    {
+      "id": "e_test_generation_phase_gating",
+      "fromNode": "n_test_generation",
+      "toNode": "n_phase_gating",
+      "label": "precedes_code [EXTRACTED]"
+    },
+    {
+      "id": "e_test_generation_prompt_distribution",
+      "fromNode": "n_test_generation",
+      "toNode": "n_prompt_distribution",
+      "label": "constrains [EXTRACTED]"
+    },
+    {
+      "id": "e_test_generation_related_ticoder",
+      "fromNode": "n_test_generation",
+      "toNode": "n_related_ticoder",
+      "label": "informs [INFERRED]"
+    },
+    {
+      "id": "e_implementation_deterministic_tests",
+      "fromNode": "n_implementation",
+      "toNode": "n_deterministic_tests",
+      "label": "validated_by [EXTRACTED]"
+    },
+    {
+      "id": "e_implementation_prompt_distribution",
+      "fromNode": "n_implementation",
+      "toNode": "n_prompt_distribution",
+      "label": "constrains [EXTRACTED]"
+    },
+    {
+      "id": "e_failure_repair_bounded_repair",
+      "fromNode": "n_failure_repair",
+      "toNode": "n_bounded_repair",
+      "label": "governed_by [EXTRACTED]"
+    },
+    {
+      "id": "e_failure_repair_prompt_distribution",
+      "fromNode": "n_failure_repair",
+      "toNode": "n_prompt_distribution",
+      "label": "constrains [EXTRACTED]"
+    },
+    {
+      "id": "e_failure_repair_related_self_refine",
+      "fromNode": "n_failure_repair",
+      "toNode": "n_related_self_refine",
+      "label": "informs [INFERRED]"
+    },
+    {
+      "id": "e_review_validation_gates",
+      "fromNode": "n_review",
+      "toNode": "n_validation_gates",
+      "label": "acts_as [EXTRACTED]"
+    },
+    {
+      "id": "e_review_prompt_distribution",
+      "fromNode": "n_review",
+      "toNode": "n_prompt_distribution",
+      "label": "constrains [EXTRACTED]"
+    },
+    {
+      "id": "e_validation_gates_atomic_mutation",
+      "fromNode": "n_validation_gates",
+      "toNode": "n_atomic_mutation",
+      "label": "precedes [EXTRACTED]"
+    },
+    {
+      "id": "e_validation_gates_runtime_enforcement",
+      "fromNode": "n_validation_gates",
+      "toNode": "n_runtime_enforcement",
+      "label": "includes [EXTRACTED]"
+    },
+    {
+      "id": "e_phase_gating_runtime_enforcement",
+      "fromNode": "n_phase_gating",
+      "toNode": "n_runtime_enforcement",
+      "label": "includes [EXTRACTED]"
+    },
+    {
+      "id": "e_bounded_repair_failure_signature",
+      "fromNode": "n_bounded_repair",
+      "toNode": "n_failure_signature",
+      "label": "uses [EXTRACTED]"
+    },
+    {
+      "id": "e_bounded_repair_deterministic_tests",
+      "fromNode": "n_bounded_repair",
+      "toNode": "n_deterministic_tests",
+      "label": "retries_until_pass_or_cap [EXTRACTED]"
+    },
+    {
+      "id": "e_bounded_repair_runtime_enforcement",
+      "fromNode": "n_bounded_repair",
+      "toNode": "n_runtime_enforcement",
+      "label": "includes [EXTRACTED]"
+    },
+    {
+      "id": "e_deterministic_tests_atomic_mutation",
+      "fromNode": "n_deterministic_tests",
+      "toNode": "n_atomic_mutation",
+      "label": "followed_by [EXTRACTED]"
+    },
+    {
+      "id": "e_atomic_mutation_runtime_enforcement",
+      "fromNode": "n_atomic_mutation",
+      "toNode": "n_runtime_enforcement",
+      "label": "includes [EXTRACTED]"
+    },
+    {
+      "id": "e_runtime_enforcement_prompt_distribution",
+      "fromNode": "n_runtime_enforcement",
+      "toNode": "n_prompt_distribution",
+      "label": "complemented_by [EXTRACTED]"
+    },
+    {
+      "id": "e_prompt_distribution_related_llm4tdd",
+      "fromNode": "n_prompt_distribution",
+      "toNode": "n_related_llm4tdd",
+      "label": "informs [INFERRED]"
+    },
+    {
+      "id": "e_limitations_future_work",
+      "fromNode": "n_limitations",
+      "toNode": "n_future_work",
+      "label": "responds_to [EXTRACTED]"
+    }
+  ]
+}

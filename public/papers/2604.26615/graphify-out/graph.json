@@ -1,0 +1,971 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "h_tdd_principles",
+        "label": "TDD principles become governance constraints",
+        "nodes": [
+          "tdd",
+          "principle_categories",
+          "manifesto",
+          "runtime_enforcement"
+        ],
+        "confidence": "EXTRACTED"
+      },
+      {
+        "id": "h_governed_workflow",
+        "label": "Governed Red-Green-Refactor workflow",
+        "nodes": [
+          "planner",
+          "test_generation",
+          "implementation",
+          "validation_gates",
+          "deterministic_tests",
+          "bounded_repair",
+          "atomic_mutation"
+        ],
+        "confidence": "EXTRACTED"
+      },
+      {
+        "id": "h_prompt_engine_split",
+        "label": "Prompt constraints + deterministic engine",
+        "nodes": [
+          "prompt_distribution",
+          "proposal_layer",
+          "engine_governance",
+          "validation_gates",
+          "phase_gating"
+        ],
+        "confidence": "EXTRACTED"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "TDD Governance for Multi-Agent Code Generation via Prompt Engineering",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "EASE 2026 arXiv paper proposing AI-native TDD governance for multi-agent code generation.",
+      "id": "paper",
+      "community": 0,
+      "norm_label": "tdd governance for multi-agent code generation via prompt engineering"
+    },
+    {
+      "label": "Problem: unconstrained LLM coding is unstable",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "LLMs show non-determinism, hallucinations, reproducibility gaps, and weak process discipline.",
+      "id": "problem",
+      "community": 0,
+      "norm_label": "problem: unconstrained llm coding is unstable"
+    },
+    {
+      "label": "Gap: tests are auxiliary, not enforceable constraints",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Existing LLM approaches use tests as prompts/evaluation but do not enforce full TDD discipline.",
+      "id": "gap",
+      "community": 0,
+      "norm_label": "gap: tests are auxiliary, not enforceable constraints"
+    },
+    {
+      "label": "Contribution: AI-native TDD framework",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Turns classical TDD principles into prompt-level and workflow-level governance mechanisms.",
+      "id": "contribution",
+      "community": 0,
+      "norm_label": "contribution: ai-native tdd framework"
+    },
+    {
+      "label": "Classical TDD",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Red-Green-Refactor micro-cycle where tests specify behavior before implementation.",
+      "id": "tdd",
+      "community": 1,
+      "norm_label": "classical tdd"
+    },
+    {
+      "label": "Red-Green-Refactor phase ordering",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "A disciplined cycle: failing test first, minimal code to pass, then behavior-preserving refactor.",
+      "id": "red_green_refactor",
+      "community": 1,
+      "norm_label": "red-green-refactor phase ordering"
+    },
+    {
+      "label": "TDD principle categories",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Order, granularity, feedback quality, and design hygiene.",
+      "id": "principle_categories",
+      "community": 1,
+      "norm_label": "tdd principle categories"
+    },
+    {
+      "label": "Order constraints",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Test-first and Red\u2192Green\u2192Refactor sequencing.",
+      "id": "order_constraints",
+      "community": 1,
+      "norm_label": "order constraints"
+    },
+    {
+      "label": "Granularity constraints",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Minimal failing test, minimal passing code, one failing test at a time.",
+      "id": "granularity_constraints",
+      "community": 1,
+      "norm_label": "granularity constraints"
+    },
+    {
+      "label": "Feedback-quality constraints",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "FAST, independent, repeatable, self-validating, timely tests with meaningful assertions.",
+      "id": "feedback_quality",
+      "community": 1,
+      "norm_label": "feedback-quality constraints"
+    },
+    {
+      "label": "Design hygiene constraints",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Remove duplication and refactor continuously while green.",
+      "id": "design_hygiene",
+      "community": 1,
+      "norm_label": "design hygiene constraints"
+    },
+    {
+      "label": "Machine-readable TDD manifesto",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "JSON-style structured governance object with principle id, title, intent, AI-native interpretation, constraints, and anti-patterns.",
+      "id": "manifesto",
+      "community": 1,
+      "norm_label": "machine-readable tdd manifesto"
+    },
+    {
+      "label": "Governance-centric layered architecture",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Separates non-authoritative LLM proposal generation from authoritative engine-controlled mutation.",
+      "id": "architecture",
+      "community": 2,
+      "norm_label": "governance-centric layered architecture"
+    },
+    {
+      "label": "LLM proposal layer",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Planner, test, code, repair, and review agents propose structured outputs but cannot mutate workspace directly.",
+      "id": "proposal_layer",
+      "community": 2,
+      "norm_label": "llm proposal layer"
+    },
+    {
+      "label": "Authoritative engine governance",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Engine owns validation, phase transitions, test runs, atomic apply, rollback, and state mutation.",
+      "id": "engine_governance",
+      "community": 2,
+      "norm_label": "authoritative engine governance"
+    },
+    {
+      "label": "Planner prompt/agent",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Decomposes requirements into ordered steps with expected test outcomes.",
+      "id": "planner",
+      "community": 3,
+      "norm_label": "planner prompt/agent"
+    },
+    {
+      "label": "Test generation prompt/agent",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "RED-phase prompt restricted to tests with meaningful assertions aligned to the spec.",
+      "id": "test_generation",
+      "community": 3,
+      "norm_label": "test generation prompt/agent"
+    },
+    {
+      "label": "Implementation prompt/agent",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "GREEN-phase prompt restricted to minimal code changes needed to satisfy failing tests.",
+      "id": "implementation",
+      "community": 3,
+      "norm_label": "implementation prompt/agent"
+    },
+    {
+      "label": "Failure repair prompt/agent",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Uses structured failure context for minimal localized corrections.",
+      "id": "failure_repair",
+      "community": 3,
+      "norm_label": "failure repair prompt/agent"
+    },
+    {
+      "label": "Review prompt/agent",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Quality gate preventing over-specification, invented requirements, and phase pollution.",
+      "id": "review",
+      "community": 3,
+      "norm_label": "review prompt/agent"
+    },
+    {
+      "label": "Validation gates",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Schema/content checks, policy enforcement, phase consistency checks, and optional approval.",
+      "id": "validation_gates",
+      "community": 2,
+      "norm_label": "validation gates"
+    },
+    {
+      "label": "Phase gating",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Code generation is not allowed until a failing test state exists; refactor is only allowed while green.",
+      "id": "phase_gating",
+      "community": 2,
+      "norm_label": "phase gating"
+    },
+    {
+      "label": "Bounded repair loops",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "At most N=3 repair attempts, with early termination for repeated failure signature, no effective change, or semantically equivalent proposals.",
+      "id": "bounded_repair",
+      "community": 3,
+      "norm_label": "bounded repair loops"
+    },
+    {
+      "label": "Failure signature S",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Exception type, failing tests, normalized message; used to detect repeated failures.",
+      "id": "failure_signature",
+      "community": 3,
+      "norm_label": "failure signature s"
+    },
+    {
+      "label": "Deterministic test run",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Engine executes tests as an authoritative verifier after approved proposals.",
+      "id": "deterministic_tests",
+      "community": 2,
+      "norm_label": "deterministic test run"
+    },
+    {
+      "label": "Atomic apply / rollback",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "All file mutations are performed atomically by the engine after validation; rollback protects refactoring.",
+      "id": "atomic_mutation",
+      "community": 2,
+      "norm_label": "atomic apply / rollback"
+    },
+    {
+      "label": "Runtime enforcement mechanisms",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Planner-ordered FAIL gating, scope restrictions, no-op/unrelated-change rejection, post-apply tests, rollback.",
+      "id": "runtime_enforcement",
+      "community": 2,
+      "norm_label": "runtime enforcement mechanisms"
+    },
+    {
+      "label": "Prompt distribution across roles",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Governance invariants are distributed across system, planner, test generation, implementation, failure repair, and review prompts.",
+      "id": "prompt_distribution",
+      "community": 3,
+      "norm_label": "prompt distribution across roles"
+    },
+    {
+      "label": "Benefits claimed",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Reduced uncontrolled iteration, improved stability/reproducibility, less speculative code expansion, auditable AI-assisted development.",
+      "id": "benefit",
+      "community": 0,
+      "norm_label": "benefits claimed"
+    },
+    {
+      "label": "Limitations",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Prompt-level enforcement only partial; empirical validation preliminary; cross-model/repository-scale evaluation needed; strict governance may limit exploration.",
+      "id": "limitations",
+      "community": 0,
+      "norm_label": "limitations"
+    },
+    {
+      "label": "Future work",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Repository-scale industrial settings, CI/CD integration, configurable governance levels, regulated-domain auditability.",
+      "id": "future_work",
+      "community": 0,
+      "norm_label": "future work"
+    },
+    {
+      "label": "TDFlow",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Related agentic TDD workflow; this paper emphasizes governed execution under non-determinism.",
+      "id": "related_tdflow",
+      "community": 4,
+      "norm_label": "tdflow"
+    },
+    {
+      "label": "TiCoder",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Related interactive TDD-style test refinement and code generation.",
+      "id": "related_ticoder",
+      "community": 4,
+      "norm_label": "ticoder"
+    },
+    {
+      "label": "LLM4TDD best practices",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Related practical guidance for TDD-style LLM use.",
+      "id": "related_llm4tdd",
+      "community": 4,
+      "norm_label": "llm4tdd best practices"
+    },
+    {
+      "label": "Self-Refine / structured CoT prompting",
+      "file_type": "paper",
+      "source_file": "paper_text.md",
+      "description": "Related prompt engineering loops that improve code generation quality but do not enforce full process discipline.",
+      "id": "related_self_refine",
+      "community": 4,
+      "norm_label": "self-refine / structured cot prompting"
+    }
+  ],
+  "links": [
+    {
+      "relation": "motivated_by",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "paper",
+      "target": "problem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "addresses",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "paper",
+      "target": "gap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "proposes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "paper",
+      "target": "contribution",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "mitigates",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "benefit",
+      "target": "problem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "requires_governance",
+      "confidence": "INFERRED",
+      "source_file": "paper_text.md",
+      "source": "problem",
+      "target": "bounded_repair",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "requires_authority",
+      "confidence": "INFERRED",
+      "source_file": "paper_text.md",
+      "source": "problem",
+      "target": "engine_governance",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "contrasted_with",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "related_tdflow",
+      "target": "gap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contrasted_with",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "related_ticoder",
+      "target": "gap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contrasted_with",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "related_llm4tdd",
+      "target": "gap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contrasted_with",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "related_self_refine",
+      "target": "gap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "operationalizes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "contribution",
+      "target": "tdd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "contribution",
+      "target": "manifesto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implemented_as",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "contribution",
+      "target": "architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "claims",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "contribution",
+      "target": "benefit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "qualifies",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "limitations",
+      "target": "contribution",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "informs",
+      "confidence": "INFERRED",
+      "source_file": "paper_text.md",
+      "source": "related_tdflow",
+      "target": "contribution",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "tdd",
+      "target": "red_green_refactor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "abstracted_into",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "tdd",
+      "target": "principle_categories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "enforces",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "order_constraints",
+      "target": "red_green_refactor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "phase_gating",
+      "target": "red_green_refactor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "principle_categories",
+      "target": "order_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "principle_categories",
+      "target": "granularity_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "principle_categories",
+      "target": "feedback_quality",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "principle_categories",
+      "target": "design_hygiene",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "encodes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "manifesto",
+      "target": "order_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "must_be_minimal",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "implementation",
+      "target": "granularity_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "encodes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "manifesto",
+      "target": "granularity_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "requires",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "feedback_quality",
+      "target": "deterministic_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "encodes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "manifesto",
+      "target": "feedback_quality",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "protected_by",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "design_hygiene",
+      "target": "atomic_mutation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "encodes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "manifesto",
+      "target": "design_hygiene",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "informs",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "manifesto",
+      "target": "prompt_distribution",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "maps_to",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "manifesto",
+      "target": "runtime_enforcement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "separates",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "architecture",
+      "target": "proposal_layer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "separates",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "architecture",
+      "target": "engine_governance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "submits_to",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "proposal_layer",
+      "target": "engine_governance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "proposal_layer",
+      "target": "planner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "proposal_layer",
+      "target": "test_generation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "proposal_layer",
+      "target": "implementation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "proposal_layer",
+      "target": "failure_repair",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "proposal_layer",
+      "target": "review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "performs",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "engine_governance",
+      "target": "validation_gates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "performs",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "engine_governance",
+      "target": "phase_gating",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "executes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "engine_governance",
+      "target": "deterministic_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "owns",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "engine_governance",
+      "target": "atomic_mutation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "controls",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "engine_governance",
+      "target": "bounded_repair",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "establishes_order",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "planner",
+      "target": "phase_gating",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "routes_to_red",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "planner",
+      "target": "test_generation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "constrains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "prompt_distribution",
+      "target": "planner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "expects_initial_fail",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "test_generation",
+      "target": "deterministic_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "precedes_code",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "test_generation",
+      "target": "phase_gating",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "constrains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "prompt_distribution",
+      "target": "test_generation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "informs",
+      "confidence": "INFERRED",
+      "source_file": "paper_text.md",
+      "source": "related_ticoder",
+      "target": "test_generation",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "validated_by",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "implementation",
+      "target": "deterministic_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "constrains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "prompt_distribution",
+      "target": "implementation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "governed_by",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "failure_repair",
+      "target": "bounded_repair",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "constrains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "prompt_distribution",
+      "target": "failure_repair",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "informs",
+      "confidence": "INFERRED",
+      "source_file": "paper_text.md",
+      "source": "related_self_refine",
+      "target": "failure_repair",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "acts_as",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "review",
+      "target": "validation_gates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "constrains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "prompt_distribution",
+      "target": "review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "precedes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "validation_gates",
+      "target": "atomic_mutation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "runtime_enforcement",
+      "target": "validation_gates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "runtime_enforcement",
+      "target": "phase_gating",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "bounded_repair",
+      "target": "failure_signature",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "retries_until_pass_or_cap",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "bounded_repair",
+      "target": "deterministic_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "runtime_enforcement",
+      "target": "bounded_repair",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "followed_by",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "atomic_mutation",
+      "target": "deterministic_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "runtime_enforcement",
+      "target": "atomic_mutation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "complemented_by",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "prompt_distribution",
+      "target": "runtime_enforcement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "informs",
+      "confidence": "INFERRED",
+      "source_file": "paper_text.md",
+      "source": "related_llm4tdd",
+      "target": "prompt_distribution",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "responds_to",
+      "confidence": "EXTRACTED",
+      "source_file": "paper_text.md",
+      "source": "future_work",
+      "target": "limitations",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "h_tdd_principles",
+      "label": "TDD principles become governance constraints",
+      "nodes": [
+        "tdd",
+        "principle_categories",
+        "manifesto",
+        "runtime_enforcement"
+      ],
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "h_governed_workflow",
+      "label": "Governed Red-Green-Refactor workflow",
+      "nodes": [
+        "planner",
+        "test_generation",
+        "implementation",
+        "validation_gates",
+        "deterministic_tests",
+        "bounded_repair",
+        "atomic_mutation"
+      ],
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "h_prompt_engine_split",
+      "label": "Prompt constraints + deterministic engine",
+      "nodes": [
+        "prompt_distribution",
+        "proposal_layer",
+        "engine_governance",
+        "validation_gates",
+        "phase_gating"
+      ],
+      "confidence": "EXTRACTED"
+    }
+  ]
+}

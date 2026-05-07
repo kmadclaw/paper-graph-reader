@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>graphify - /root/graphified-papers/arxiv-2604.26615/graphify-out/graph.html</title>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f0f1a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: flex; height: 100vh; overflow: hidden; }
+  #graph { flex: 1; }
+  #sidebar { width: 280px; background: #1a1a2e; border-left: 1px solid #2a2a4e; display: flex; flex-direction: column; overflow: hidden; }
+  #search-wrap { padding: 12px; border-bottom: 1px solid #2a2a4e; }
+  #search { width: 100%; background: #0f0f1a; border: 1px solid #3a3a5e; color: #e0e0e0; padding: 7px 10px; border-radius: 6px; font-size: 13px; outline: none; }
+  #search:focus { border-color: #4E79A7; }
+  #search-results { max-height: 140px; overflow-y: auto; padding: 4px 12px; border-bottom: 1px solid #2a2a4e; display: none; }
+  .search-item { padding: 4px 6px; cursor: pointer; border-radius: 4px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .search-item:hover { background: #2a2a4e; }
+  #info-panel { padding: 14px; border-bottom: 1px solid #2a2a4e; min-height: 140px; }
+  #info-panel h3 { font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  #info-content { font-size: 13px; color: #ccc; line-height: 1.6; }
+  #info-content .field { margin-bottom: 5px; }
+  #info-content .field b { color: #e0e0e0; }
+  #info-content .empty { color: #555; font-style: italic; }
+  .neighbor-link { display: block; padding: 2px 6px; margin: 2px 0; border-radius: 3px; cursor: pointer; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-left: 3px solid #333; }
+  .neighbor-link:hover { background: #2a2a4e; }
+  #neighbors-list { max-height: 160px; overflow-y: auto; margin-top: 4px; }
+  #legend-wrap { flex: 1; overflow-y: auto; padding: 12px; }
+  #legend-wrap h3 { font-size: 13px; color: #aaa; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .legend-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; border-radius: 4px; font-size: 12px; }
+  .legend-item:hover { background: #2a2a4e; padding-left: 4px; }
+  .legend-item.dimmed { opacity: 0.35; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .legend-count { color: #666; font-size: 11px; }
+  #stats { padding: 10px 14px; border-top: 1px solid #2a2a4e; font-size: 11px; color: #555; }
+  #legend-controls { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; padding: 4px 0; }
+  #legend-controls label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 12px; color: #aaa; user-select: none; }
+  #legend-controls label:hover { color: #e0e0e0; }
+  .legend-cb, #select-all-cb { appearance: none; -webkit-appearance: none; width: 14px; height: 14px; border: 1.5px solid #3a3a5e; border-radius: 3px; background: #0f0f1a; cursor: pointer; position: relative; flex-shrink: 0; }
+  .legend-cb:checked, #select-all-cb:checked { background: #4E79A7; border-color: #4E79A7; }
+  .legend-cb:checked::after, #select-all-cb:checked::after { content: ''; position: absolute; left: 3.5px; top: 1px; width: 4px; height: 7px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  #select-all-cb:indeterminate { background: #4E79A7; border-color: #4E79A7; }
+  #select-all-cb:indeterminate::after { content: ''; position: absolute; left: 2px; top: 5px; width: 8px; height: 2px; background: #fff; border: none; transform: none; }
+</style>
+</head>
+<body>
+<div id="graph"></div>
+<div id="sidebar">
+  <div id="search-wrap">
+    <input id="search" type="text" placeholder="Search nodes..." autocomplete="off">
+    <div id="search-results"></div>
+  </div>
+  <div id="info-panel">
+    <h3>Node Info</h3>
+    <div id="info-content"><span class="empty">Click a node to inspect it</span></div>
+  </div>
+  <div id="legend-wrap">
+    <h3>Communities</h3>
+    <div id="legend-controls">
+      <label><input type="checkbox" id="select-all-cb" checked onchange="toggleAllCommunities(!this.checked)">Select All</label>
+    </div>
+    <div id="legend"></div>
+  </div>
+  <div id="stats">35 nodes &middot; 71 edges &middot; 5 communities</div>
+</div>
+<script>
+const RAW_NODES = [{"id": "paper", "label": "TDD Governance for Multi-Agent Code Generation via Prompt Engineering", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 21.2, "font": {"size": 12, "color": "#ffffff"}, "title": "TDD Governance for Multi-Agent Code Generation via Prompt Engineering", "community": 0, "community_name": "Paper Thesis & Claims", "source_file": "paper_text.md", "file_type": "paper", "degree": 3}, {"id": "problem", "label": "Problem: unconstrained LLM coding is unstable", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 25.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Problem: unconstrained LLM coding is unstable", "community": 0, "community_name": "Paper Thesis & Claims", "source_file": "paper_text.md", "file_type": "paper", "degree": 4}, {"id": "gap", "label": "Gap: tests are auxiliary, not enforceable constraints", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 28.8, "font": {"size": 12, "color": "#ffffff"}, "title": "Gap: tests are auxiliary, not enforceable constraints", "community": 0, "community_name": "Paper Thesis & Claims", "source_file": "paper_text.md", "file_type": "paper", "degree": 5}, {"id": "contribution", "label": "Contribution: AI-native TDD framework", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 36.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Contribution: AI-native TDD framework", "community": 0, "community_name": "Paper Thesis & Claims", "source_file": "paper_text.md", "file_type": "paper", "degree": 7}, {"id": "tdd", "label": "Classical TDD", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 21.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Classical TDD", "community": 1, "community_name": "TDD Principles Manifesto", "source_file": "paper_text.md", "file_type": "paper", "degree": 3}, {"id": "red_green_refactor", "label": "Red-Green-Refactor phase ordering", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 21.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Red-Green-Refactor phase ordering", "community": 1, "community_name": "TDD Principles Manifesto", "source_file": "paper_text.md", "file_type": "paper", "degree": 3}, {"id": "principle_categories", "label": "TDD principle categories", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 28.8, "font": {"size": 12, "color": "#ffffff"}, "title": "TDD principle categories", "community": 1, "community_name": "TDD Principles Manifesto", "source_file": "paper_text.md", "file_type": "paper", "degree": 5}, {"id": "order_constraints", "label": "Order constraints", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 21.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Order constraints", "community": 1, "community_name": "TDD Principles Manifesto", "source_file": "paper_text.md", "file_type": "paper", "degree": 3}, {"id": "granularity_constraints", "label": "Granularity constraints", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 21.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Granularity constraints", "community": 1, "community_name": "TDD Principles Manifesto", "source_file": "paper_text.md", "file_type": "paper", "degree": 3}, {"id": "feedback_quality", "label": "Feedback-quality constraints", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 21.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Feedback-quality constraints", "community": 1, "community_name": "TDD Principles Manifesto", "source_file": "paper_text.md", "file_type": "paper", "degree": 3}, {"id": "design_hygiene", "label": "Design hygiene constraints", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 21.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Design hygiene constraints", "community": 1, "community_name": "TDD Principles Manifesto", "source_file": "paper_text.md", "file_type": "paper", "degree": 3}, {"id": "manifesto", "label": "Machine-readable TDD manifesto", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 36.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Machine-readable TDD manifesto", "community": 1, "community_name": "TDD Principles Manifesto", "source_file": "paper_text.md", "file_type": "paper", "degree": 7}, {"id": "architecture", "label": "Governance-centric layered architecture", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 21.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Governance-centric layered architecture", "community": 2, "community_name": "Governance Architecture", "source_file": "paper_text.md", "file_type": "paper", "degree": 3}, {"id": "proposal_layer", "label": "LLM proposal layer", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 36.2, "font": {"size": 12, "color": "#ffffff"}, "title": "LLM proposal layer", "community": 2, "community_name": "Governance Architecture", "source_file": "paper_text.md", "file_type": "paper", "degree": 7}, {"id": "engine_governance", "label": "Authoritative engine governance", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 40.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Authoritative engine governance", "community": 2, "community_name": "Governance Architecture", "source_file": "paper_text.md", "file_type": "paper", "degree": 8}, {"id": "planner", "label": "Planner prompt/agent", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 25.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Planner prompt/agent", "community": 3, "community_name": "Agent Workflow & Repair Control", "source_file": "paper_text.md", "file_type": "paper", "degree": 4}, {"id": "test_generation", "label": "Test generation prompt/agent", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 32.5, "font": {"size": 12, "color": "#ffffff"}, "title": "Test generation prompt/agent", "community": 3, "community_name": "Agent Workflow & Repair Control", "source_file": "paper_text.md", "file_type": "paper", "degree": 6}, {"id": "implementation", "label": "Implementation prompt/agent", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 25.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Implementation prompt/agent", "community": 3, "community_name": "Agent Workflow & Repair Control", "source_file": "paper_text.md", "file_type": "paper", "degree": 4}, {"id": "failure_repair", "label": "Failure repair prompt/agent", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 25.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Failure repair prompt/agent", "community": 3, "community_name": "Agent Workflow & Repair Control", "source_file": "paper_text.md", "file_type": "paper", "degree": 4}, {"id": "review", "label": "Review prompt/agent", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 21.2, "font": {"size": 12, "color": "#ffffff"}, "title": "Review prompt/agent", "community": 3, "community_name": "Agent Workflow & Repair Control", "source_file": "paper_text.md", "file_type": "paper", "degree": 3}, {"id": "validation_gates", "label": "Validation gates", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 25.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Validation gates", "community": 2, "community_name": "Governance Architecture", "source_file": "paper_text.md", "file_type": "paper", "degree": 4}, {"id": "phase_gating", "label": "Phase gating", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 28.8, "font": {"size": 12, "color": "#ffffff"}, "title": "Phase gating", "community": 2, "community_name": "Governance Architecture", "source_file": "paper_text.md", "file_type": "paper", "degree": 5}, {"id": "bounded_repair", "label": "Bounded repair loops", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 32.5, "font": {"size": 12, "color": "#ffffff"}, "title": "Bounded repair loops", "community": 3, "community_name": "Agent Workflow & Repair Control", "source_file": "paper_text.md", "file_type": "paper", "degree": 6}, {"id": "failure_signature", "label": "Failure signature S", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 13.8, "font": {"size": 0, "color": "#ffffff"}, "title": "Failure signature S", "community": 3, "community_name": "Agent Workflow & Repair Control", "source_file": "paper_text.md", "file_type": "paper", "degree": 1}, {"id": "deterministic_tests", "label": "Deterministic test run", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 32.5, "font": {"size": 12, "color": "#ffffff"}, "title": "Deterministic test run", "community": 2, "community_name": "Governance Architecture", "source_file": "paper_text.md", "file_type": "paper", "degree": 6}, {"id": "atomic_mutation", "label": "Atomic apply / rollback", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 28.8, "font": {"size": 12, "color": "#ffffff"}, "title": "Atomic apply / rollback", "community": 2, "community_name": "Governance Architecture", "source_file": "paper_text.md", "file_type": "paper", "degree": 5}, {"id": "runtime_enforcement", "label": "Runtime enforcement mechanisms", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 32.5, "font": {"size": 12, "color": "#ffffff"}, "title": "Runtime enforcement mechanisms", "community": 2, "community_name": "Governance Architecture", "source_file": "paper_text.md", "file_type": "paper", "degree": 6}, {"id": "prompt_distribution", "label": "Prompt distribution across roles", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 40.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Prompt distribution across roles", "community": 3, "community_name": "Agent Workflow & Repair Control", "source_file": "paper_text.md", "file_type": "paper", "degree": 8}, {"id": "benefit", "label": "Benefits claimed", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 17.5, "font": {"size": 12, "color": "#ffffff"}, "title": "Benefits claimed", "community": 0, "community_name": "Paper Thesis & Claims", "source_file": "paper_text.md", "file_type": "paper", "degree": 2}, {"id": "limitations", "label": "Limitations", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 17.5, "font": {"size": 12, "color": "#ffffff"}, "title": "Limitations", "community": 0, "community_name": "Paper Thesis & Claims", "source_file": "paper_text.md", "file_type": "paper", "degree": 2}, {"id": "future_work", "label": "Future work", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 13.8, "font": {"size": 0, "color": "#ffffff"}, "title": "Future work", "community": 0, "community_name": "Paper Thesis & Claims", "source_file": "paper_text.md", "file_type": "paper", "degree": 1}, {"id": "related_tdflow", "label": "TDFlow", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 17.5, "font": {"size": 12, "color": "#ffffff"}, "title": "TDFlow", "community": 4, "community_name": "Related Work Context", "source_file": "paper_text.md", "file_type": "paper", "degree": 2}, {"id": "related_ticoder", "label": "TiCoder", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 17.5, "font": {"size": 12, "color": "#ffffff"}, "title": "TiCoder", "community": 4, "community_name": "Related Work Context", "source_file": "paper_text.md", "file_type": "paper", "degree": 2}, {"id": "related_llm4tdd", "label": "LLM4TDD best practices", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 17.5, "font": {"size": 12, "color": "#ffffff"}, "title": "LLM4TDD best practices", "community": 4, "community_name": "Related Work Context", "source_file": "paper_text.md", "file_type": "paper", "degree": 2}, {"id": "related_self_refine", "label": "Self-Refine / structured CoT prompting", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 17.5, "font": {"size": 12, "color": "#ffffff"}, "title": "Self-Refine / structured CoT prompting", "community": 4, "community_name": "Related Work Context", "source_file": "paper_text.md", "file_type": "paper", "degree": 2}];
+const RAW_EDGES = [{"from": "paper", "to": "problem", "label": "motivated_by", "title": "motivated_by [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "paper", "to": "gap", "label": "addresses", "title": "addresses [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "paper", "to": "contribution", "label": "proposes", "title": "proposes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "benefit", "to": "problem", "label": "mitigates", "title": "mitigates [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "problem", "to": "bounded_repair", "label": "requires_governance", "title": "requires_governance [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "problem", "to": "engine_governance", "label": "requires_authority", "title": "requires_authority [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "related_tdflow", "to": "gap", "label": "contrasted_with", "title": "contrasted_with [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "related_ticoder", "to": "gap", "label": "contrasted_with", "title": "contrasted_with [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "related_llm4tdd", "to": "gap", "label": "contrasted_with", "title": "contrasted_with [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "related_self_refine", "to": "gap", "label": "contrasted_with", "title": "contrasted_with [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "contribution", "to": "tdd", "label": "operationalizes", "title": "operationalizes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "contribution", "to": "manifesto", "label": "uses", "title": "uses [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "contribution", "to": "architecture", "label": "implemented_as", "title": "implemented_as [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "contribution", "to": "benefit", "label": "claims", "title": "claims [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "limitations", "to": "contribution", "label": "qualifies", "title": "qualifies [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "related_tdflow", "to": "contribution", "label": "informs", "title": "informs [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "tdd", "to": "red_green_refactor", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "tdd", "to": "principle_categories", "label": "abstracted_into", "title": "abstracted_into [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "order_constraints", "to": "red_green_refactor", "label": "enforces", "title": "enforces [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "phase_gating", "to": "red_green_refactor", "label": "implements", "title": "implements [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "principle_categories", "to": "order_constraints", "label": "includes", "title": "includes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "principle_categories", "to": "granularity_constraints", "label": "includes", "title": "includes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "principle_categories", "to": "feedback_quality", "label": "includes", "title": "includes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "principle_categories", "to": "design_hygiene", "label": "includes", "title": "includes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "manifesto", "to": "order_constraints", "label": "encodes", "title": "encodes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "implementation", "to": "granularity_constraints", "label": "must_be_minimal", "title": "must_be_minimal [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "manifesto", "to": "granularity_constraints", "label": "encodes", "title": "encodes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "feedback_quality", "to": "deterministic_tests", "label": "requires", "title": "requires [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "manifesto", "to": "feedback_quality", "label": "encodes", "title": "encodes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "design_hygiene", "to": "atomic_mutation", "label": "protected_by", "title": "protected_by [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "manifesto", "to": "design_hygiene", "label": "encodes", "title": "encodes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "manifesto", "to": "prompt_distribution", "label": "informs", "title": "informs [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "manifesto", "to": "runtime_enforcement", "label": "maps_to", "title": "maps_to [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "architecture", "to": "proposal_layer", "label": "separates", "title": "separates [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "architecture", "to": "engine_governance", "label": "separates", "title": "separates [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "proposal_layer", "to": "engine_governance", "label": "submits_to", "title": "submits_to [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "proposal_layer", "to": "planner", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "proposal_layer", "to": "test_generation", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "proposal_layer", "to": "implementation", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "proposal_layer", "to": "failure_repair", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "proposal_layer", "to": "review", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "engine_governance", "to": "validation_gates", "label": "performs", "title": "performs [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "engine_governance", "to": "phase_gating", "label": "performs", "title": "performs [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "engine_governance", "to": "deterministic_tests", "label": "executes", "title": "executes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "engine_governance", "to": "atomic_mutation", "label": "owns", "title": "owns [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "engine_governance", "to": "bounded_repair", "label": "controls", "title": "controls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "planner", "to": "phase_gating", "label": "establishes_order", "title": "establishes_order [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "planner", "to": "test_generation", "label": "routes_to_red", "title": "routes_to_red [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "prompt_distribution", "to": "planner", "label": "constrains", "title": "constrains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "test_generation", "to": "deterministic_tests", "label": "expects_initial_fail", "title": "expects_initial_fail [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "test_generation", "to": "phase_gating", "label": "precedes_code", "title": "precedes_code [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "prompt_distribution", "to": "test_generation", "label": "constrains", "title": "constrains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "related_ticoder", "to": "test_generation", "label": "informs", "title": "informs [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "implementation", "to": "deterministic_tests", "label": "validated_by", "title": "validated_by [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "prompt_distribution", "to": "implementation", "label": "constrains", "title": "constrains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "failure_repair", "to": "bounded_repair", "label": "governed_by", "title": "governed_by [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "prompt_distribution", "to": "failure_repair", "label": "constrains", "title": "constrains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "related_self_refine", "to": "failure_repair", "label": "informs", "title": "informs [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "review", "to": "validation_gates", "label": "acts_as", "title": "acts_as [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "prompt_distribution", "to": "review", "label": "constrains", "title": "constrains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "validation_gates", "to": "atomic_mutation", "label": "precedes", "title": "precedes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "runtime_enforcement", "to": "validation_gates", "label": "includes", "title": "includes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "runtime_enforcement", "to": "phase_gating", "label": "includes", "title": "includes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "bounded_repair", "to": "failure_signature", "label": "uses", "title": "uses [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "bounded_repair", "to": "deterministic_tests", "label": "retries_until_pass_or_cap", "title": "retries_until_pass_or_cap [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "runtime_enforcement", "to": "bounded_repair", "label": "includes", "title": "includes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "atomic_mutation", "to": "deterministic_tests", "label": "followed_by", "title": "followed_by [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "runtime_enforcement", "to": "atomic_mutation", "label": "includes", "title": "includes [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "prompt_distribution", "to": "runtime_enforcement", "label": "complemented_by", "title": "complemented_by [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "related_llm4tdd", "to": "prompt_distribution", "label": "informs", "title": "informs [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "future_work", "to": "limitations", "label": "responds_to", "title": "responds_to [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}];
+const LEGEND = [{"cid": 0, "color": "#4E79A7", "label": "Paper Thesis &amp; Claims", "count": 7}, {"cid": 1, "color": "#F28E2B", "label": "TDD Principles Manifesto", "count": 8}, {"cid": 2, "color": "#E15759", "label": "Governance Architecture", "count": 8}, {"cid": 3, "color": "#76B7B2", "label": "Agent Workflow &amp; Repair Control", "count": 8}, {"cid": 4, "color": "#59A14F", "label": "Related Work Context", "count": 4}];
+
+// HTML-escape helper — prevents XSS when injecting graph data into innerHTML
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Build vis datasets
+const nodesDS = new vis.DataSet(RAW_NODES.map(n => ({
+  id: n.id, label: n.label, color: n.color, size: n.size,
+  font: n.font, title: n.title,
+  _community: n.community, _community_name: n.community_name,
+  _source_file: n.source_file, _file_type: n.file_type, _degree: n.degree,
+})));
+
+const edgesDS = new vis.DataSet(RAW_EDGES.map((e, i) => ({
+  id: i, from: e.from, to: e.to,
+  label: '',
+  title: e.title,
+  dashes: e.dashes,
+  width: e.width,
+  color: e.color,
+  arrows: { to: { enabled: true, scaleFactor: 0.5 } },
+})));
+
+const container = document.getElementById('graph');
+const network = new vis.Network(container, { nodes: nodesDS, edges: edgesDS }, {
+  physics: {
+    enabled: true,
+    solver: 'forceAtlas2Based',
+    forceAtlas2Based: {
+      gravitationalConstant: -60,
+      centralGravity: 0.005,
+      springLength: 120,
+      springConstant: 0.08,
+      damping: 0.4,
+      avoidOverlap: 0.8,
+    },
+    stabilization: { iterations: 200, fit: true },
+  },
+  interaction: {
+    hover: true,
+    tooltipDelay: 100,
+    hideEdgesOnDrag: true,
+    navigationButtons: false,
+    keyboard: false,
+  },
+  nodes: { shape: 'dot', borderWidth: 1.5 },
+  edges: { smooth: { type: 'continuous', roundness: 0.2 }, selectionWidth: 3 },
+});
+
+network.once('stabilizationIterationsDone', () => {
+  network.setOptions({ physics: { enabled: false } });
+});
+
+function showInfo(nodeId) {
+  const n = nodesDS.get(nodeId);
+  if (!n) return;
+  const neighborIds = network.getConnectedNodes(nodeId);
+  const neighborItems = neighborIds.map(nid => {
+    const nb = nodesDS.get(nid);
+    const color = nb ? nb.color.background : '#555';
+    return `<span class="neighbor-link" style="border-left-color:${esc(color)}" onclick="focusNode(${JSON.stringify(nid)})">${esc(nb ? nb.label : nid)}</span>`;
+  }).join('');
+  document.getElementById('info-content').innerHTML = `
+    <div class="field"><b>${esc(n.label)}</b></div>
+    <div class="field">Type: ${esc(n._file_type || 'unknown')}</div>
+    <div class="field">Community: ${esc(n._community_name)}</div>
+    <div class="field">Source: ${esc(n._source_file || '-')}</div>
+    <div class="field">Degree: ${n._degree}</div>
+    ${neighborIds.length ? `<div class="field" style="margin-top:8px;color:#aaa;font-size:11px">Neighbors (${neighborIds.length})</div><div id="neighbors-list">${neighborItems}</div>` : ''}
+  `;
+}
+
+function focusNode(nodeId) {
+  network.focus(nodeId, { scale: 1.4, animation: true });
+  network.selectNodes([nodeId]);
+  showInfo(nodeId);
+}
+
+// Track hovered node — hover detection is more reliable than click params
+let hoveredNodeId = null;
+network.on('hoverNode', params => {
+  hoveredNodeId = params.node;
+  container.style.cursor = 'pointer';
+});
+network.on('blurNode', () => {
+  hoveredNodeId = null;
+  container.style.cursor = 'default';
+});
+container.addEventListener('click', () => {
+  if (hoveredNodeId !== null) {
+    showInfo(hoveredNodeId);
+    network.selectNodes([hoveredNodeId]);
+  }
+});
+network.on('click', params => {
+  if (params.nodes.length > 0) {
+    showInfo(params.nodes[0]);
+  } else if (hoveredNodeId === null) {
+    document.getElementById('info-content').innerHTML = '<span class="empty">Click a node to inspect it</span>';
+  }
+});
+
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('search-results');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.toLowerCase().trim();
+  searchResults.innerHTML = '';
+  if (!q) { searchResults.style.display = 'none'; return; }
+  const matches = RAW_NODES.filter(n => n.label.toLowerCase().includes(q)).slice(0, 20);
+  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  searchResults.style.display = 'block';
+  matches.forEach(n => {
+    const el = document.createElement('div');
+    el.className = 'search-item';
+    el.textContent = n.label;
+    el.style.borderLeft = `3px solid ${n.color.background}`;
+    el.style.paddingLeft = '8px';
+    el.onclick = () => {
+      network.focus(n.id, { scale: 1.5, animation: true });
+      network.selectNodes([n.id]);
+      showInfo(n.id);
+      searchResults.style.display = 'none';
+      searchInput.value = '';
+    };
+    searchResults.appendChild(el);
+  });
+});
+document.addEventListener('click', e => {
+  if (!searchResults.contains(e.target) && e.target !== searchInput)
+    searchResults.style.display = 'none';
+});
+
+const hiddenCommunities = new Set();
+
+const selectAllCb = document.getElementById('select-all-cb');
+
+function updateSelectAllState() {
+  const total = LEGEND.length;
+  const hidden = hiddenCommunities.size;
+  selectAllCb.checked = hidden === 0;
+  selectAllCb.indeterminate = hidden > 0 && hidden < total;
+}
+
+function toggleAllCommunities(hide) {
+  document.querySelectorAll('.legend-item').forEach(item => {
+    hide ? item.classList.add('dimmed') : item.classList.remove('dimmed');
+  });
+  document.querySelectorAll('.legend-cb').forEach(cb => {
+    cb.checked = !hide;
+  });
+  LEGEND.forEach(c => {
+    if (hide) hiddenCommunities.add(c.cid); else hiddenCommunities.delete(c.cid);
+  });
+  const updates = RAW_NODES.map(n => ({ id: n.id, hidden: hide }));
+  nodesDS.update(updates);
+  updateSelectAllState();
+}
+
+const legendEl = document.getElementById('legend');
+LEGEND.forEach(c => {
+  const item = document.createElement('div');
+  item.className = 'legend-item';
+  const cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.className = 'legend-cb';
+  cb.checked = true;
+  cb.addEventListener('change', (e) => {
+    e.stopPropagation();
+    if (cb.checked) {
+      hiddenCommunities.delete(c.cid);
+      item.classList.remove('dimmed');
+    } else {
+      hiddenCommunities.add(c.cid);
+      item.classList.add('dimmed');
+    }
+    const updates = RAW_NODES
+      .filter(n => n.community === c.cid)
+      .map(n => ({ id: n.id, hidden: !cb.checked }));
+    nodesDS.update(updates);
+    updateSelectAllState();
+  });
+  item.innerHTML = `<div class="legend-dot" style="background:${c.color}"></div>
+    <span class="legend-label">${c.label}</span>
+    <span class="legend-count">${c.count}</span>`;
+  item.prepend(cb);
+  item.onclick = (e) => {
+    if (e.target === cb) return;
+    cb.checked = !cb.checked;
+    cb.dispatchEvent(new Event('change'));
+  };
+  legendEl.appendChild(item);
+});
+</script>
+<script>
+// Render hyperedges as shaded regions
+const hyperedges = [{"id": "h_tdd_principles", "label": "TDD principles become governance constraints", "nodes": ["tdd", "principle_categories", "manifesto", "runtime_enforcement"], "confidence": "EXTRACTED"}, {"id": "h_governed_workflow", "label": "Governed Red-Green-Refactor workflow", "nodes": ["planner", "test_generation", "implementation", "validation_gates", "deterministic_tests", "bounded_repair", "atomic_mutation"], "confidence": "EXTRACTED"}, {"id": "h_prompt_engine_split", "label": "Prompt constraints + deterministic engine", "nodes": ["prompt_distribution", "proposal_layer", "engine_governance", "validation_gates", "phase_gating"], "confidence": "EXTRACTED"}];
+// afterDrawing passes ctx already transformed to network coordinate space.
+// Draw node positions raw — no manual pan/zoom/DPR math needed.
+network.on('afterDrawing', function(ctx) {
+    hyperedges.forEach(h => {
+        const positions = h.nodes
+            .map(nid => network.getPositions([nid])[nid])
+            .filter(p => p !== undefined);
+        if (positions.length < 2) return;
+        ctx.save();
+        ctx.globalAlpha = 0.12;
+        ctx.fillStyle = '#6366f1';
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        // Centroid and expanded hull in network coordinates
+        const cx = positions.reduce((s, p) => s + p.x, 0) / positions.length;
+        const cy = positions.reduce((s, p) => s + p.y, 0) / positions.length;
+        const expanded = positions.map(p => ({
+            x: cx + (p.x - cx) * 1.15,
+            y: cy + (p.y - cy) * 1.15
+        }));
+        ctx.moveTo(expanded[0].x, expanded[0].y);
+        expanded.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+        ctx.closePath();
+        ctx.fill();
+        ctx.globalAlpha = 0.4;
+        ctx.stroke();
+        // Label
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = '#4f46e5';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(h.label, cx, cy - 5);
+        ctx.restore();
+    });
+});
+</script>
+</body>
+</html>
