@@ -185,7 +185,16 @@ function Read({ pages, query, setQuery }) {
 }
 
 function Frame({ title, url }) {
-  return <section className="frame-panel"><div className="frame-head"><h3>{title}</h3><a href={url} target="_blank">Open full screen <ExternalLink size={14} /></a></div><iframe src={url} title={title} /></section>;
+  return <section className="frame-panel">
+    <div className="frame-head">
+      <div>
+        <h3>{title}</h3>
+        <p>Pinch/drag inside the frame, or open full screen for the best mobile graph view.</p>
+      </div>
+      <a href={url} target="_blank">Open full screen <ExternalLink size={14} /></a>
+    </div>
+    <iframe src={url} title={title} />
+  </section>;
 }
 
 function Markdown({ title, text }) {
